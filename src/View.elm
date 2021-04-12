@@ -22,12 +22,12 @@ import Element
         , text
         , width
         )
-import Element.Background as Bg
+import Element.Background as Bg exposing (color)
 import Element.Border as Border
 import Element.Font as Font exposing (Font)
 import Element.Input as Inp
 import Html exposing (Html)
-import Types exposing (Model, Msg)
+import Types exposing (Model, Msg(..))
 
 
 blue : Color
@@ -45,22 +45,31 @@ grey =
     rgb255 217 217 217
 
 
-but : String -> Element Msg
-but buttonName =
-    Inp.button [ Bg.color grey, width fill, height (px 50), Border.rounded 15 ]
-        { label = text buttonName, onPress = Nothing }
+but : Int -> Int -> String -> Element Msg
+but buttonId activeButton buttonName =
+    let
+        color =
+            if buttonId == activeButton then
+                pink
+
+            else
+                grey
+    in
+    Inp.button [ Bg.color color, width fill, height (px 50), Border.rounded 15 ]
+        { label = text buttonName, onPress = Just (ChangeActiveButton buttonId) }
 
 
-viewsidebar =
+viewsidebar : Model -> Element Msg
+viewsidebar model =
     column
         [ Bg.color blue, width (px 250), padding 25, height fill ]
         [ column
             [ width fill
             , spacing 15
             ]
-            [ but "sue"
-            , but "mary"
-            , but "taliyah"
+            [ but 0 model.activeButton "sue"
+            , but 1 model.activeButton "mary"
+            , but 2 model.activeButton "taliyah"
             ]
         , Element.newTabLink
             [ Font.size 25, Font.bold, alignBottom, centerX ]
@@ -78,7 +87,7 @@ view model =
 
 
 viewBody : Model -> Element Msg
-viewBody _ =
+viewBody model =
     row
         [ height fill
         , width fill
@@ -88,6 +97,6 @@ viewBody _ =
         , spaceEvenly
         , Border.rounded 15
         ]
-        [ viewsidebar
+        [ viewsidebar model
         , el [ width fill, height fill, Bg.color pink, padding 25 ] (text "Dashboard")
         ]

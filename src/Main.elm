@@ -18,9 +18,14 @@ main =
 
 init : Flags -> ( Model, Cmd Msg )
 init _ =
-    ( {}, Cmd.none )
+    ( emptyModel, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
     Sub.none
+
+
+emptyModel : Model
+emptyModel =
+    { activeButton = 0 }
