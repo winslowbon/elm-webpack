@@ -49,6 +49,23 @@ but =
     el [ Bg.color grey, width fill, height (px 50), Border.rounded 15 ] none
 
 
+viewsidebar =
+    column
+        [ Bg.color blue, width (px 250), padding 25, height fill ]
+        [ column
+            [ width fill
+            , spacing 15
+            ]
+            [ but
+            , but
+            , but
+            ]
+        , Element.newTabLink
+            [ Font.size 25, Font.bold, alignBottom, centerX ]
+            { label = text "By Winslow", url = "https://www.instagram.com/winslowbonnett" }
+        ]
+
+
 view : Model -> Html Msg
 view model =
     viewBody model
@@ -69,17 +86,6 @@ viewBody _ =
         , spaceEvenly
         , Border.rounded 15
         ]
-        [ column
-            [ Bg.color blue, width (px 250), padding 25, height fill ]
-            [ column
-                [ width fill
-                , spacing 15
-                ]
-                [ but
-                , but
-                , but
-                ]
-            , el [ Font.size 25, Font.bold, alignBottom, centerX ] (text "By Winslow")
-            ]
+        [ viewsidebar
         , el [ width fill, height fill, Bg.color pink, padding 25 ] (text "Dashboard")
         ]
