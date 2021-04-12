@@ -45,8 +45,10 @@ grey =
     rgb255 217 217 217
 
 
-but =
-    el [ Bg.color grey, width fill, height (px 50), Border.rounded 15 ] none
+but : String -> Element Msg
+but buttonName =
+    Inp.button [ Bg.color grey, width fill, height (px 50), Border.rounded 15 ]
+        { label = text buttonName, onPress = Nothing }
 
 
 viewsidebar =
@@ -56,9 +58,9 @@ viewsidebar =
             [ width fill
             , spacing 15
             ]
-            [ but
-            , but
-            , but
+            [ but "sue"
+            , but "mary"
+            , but "taliyah"
             ]
         , Element.newTabLink
             [ Font.size 25, Font.bold, alignBottom, centerX ]
