@@ -12,6 +12,7 @@ import Element
         , el
         , fill
         , height
+        , image
         , none
         , padding
         , px
@@ -27,6 +28,7 @@ import Element.Border as Border
 import Element.Font as Font exposing (Font)
 import Element.Input as Inp
 import Html exposing (Html)
+import Html.Attributes exposing (src)
 import Types exposing (Model, Msg(..))
 
 
@@ -98,5 +100,14 @@ viewBody model =
         , Border.rounded 15
         ]
         [ viewsidebar model
-        , el [ width fill, height fill, Bg.color pink, padding 25 ] (text "Dashboard")
+        , viewDashboard model
+        ]
+
+
+viewDashboard : Model -> Element Msg
+viewDashboard model =
+    column [ Bg.color pink, padding 25, width fill, height fill ]
+        [ el [ Font.size 35, Font.extraBold, centerX ] (text "DASHBOARD")
+        , image [ centerX, width (Element.px 300), alignBottom ]
+            { description = "", src = "/rooftop.jpg" }
         ]
