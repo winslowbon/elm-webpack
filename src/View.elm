@@ -40,6 +40,11 @@ white =
     rgb255 255 255 255
 
 
+black : Color
+black =
+    rgb255 0 0 0
+
+
 blue : Color
 blue =
     rgb255 189 85 15
@@ -134,7 +139,8 @@ viewDashboard model =
         [ column
             [ Bg.color grey
             , centerX
-            , padding 30
+            , spacing 40
+            , padding 60
             , Border.shadow
                 { blur = 3
                 , color = blue
@@ -143,7 +149,8 @@ viewDashboard model =
                 }
             ]
             [ image
-                [ centerX
+                [ Border.glow blue 2
+                , centerX
                 , height (px 200)
                 , Border.rounded 100
                 , Element.clip
@@ -153,25 +160,39 @@ viewDashboard model =
             , column
                 [ Font.size 35
                 , Font.extraBold
-                , padding 12
                 , heebo
                 ]
                 [ text "Winslow", text "Bonnett" ]
             , column
                 [ Font.size 20
                 , Font.bold
-                , padding 12
-                , Font.color blue
+                , Font.color black
+                , spacing 5
                 ]
                 [ text "LOCATION"
                 , Element.newTabLink
                     [ hover
                     , Font.size 17
                     , Font.color blue
-                    , alignRight
+                    , Font.italic
+                    , Font.regular
                     ]
                     { label = text "Bridgetown, Barbados"
                     , url = "https://goo.gl/maps/E24WAqLWgNTj4xwm8"
+                    }
+                ]
+            , row [ spacing 10, centerX ]
+                [ Element.newTabLink []
+                    { label =
+                        Element.image [ width (px 50), hover ]
+                            { description = "", src = "/instaLogo.png" }
+                    , url = "https://www.instagram.com/winslowbonnett/"
+                    }
+                , Element.newTabLink []
+                    { label =
+                        Element.image [ width (px 38), hover ]
+                            { description = "", src = "/githubicon.png" }
+                    , url = "https://github.com/winslowbon"
                     }
                 ]
             ]
