@@ -171,7 +171,7 @@ viewDashboard model =
                     , alignRight
                     ]
                     { label = text "Bridgetown, Barbados"
-                    , url = "https://www.google.com/maps/d/viewer?ie=UTF8&msa=0&ll=13.128298%2C-59.539375000000014&spn=0.171856%2C0.283585&z=12&om=1&mid=1d3lGhEqEZoJP05HuJg5jUosZe9s"
+                    , url = "https://goo.gl/maps/E24WAqLWgNTj4xwm8"
                     }
                 ]
             ]
