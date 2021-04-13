@@ -5,6 +5,8 @@ import Element
         ( Color
         , Element
         , alignBottom
+        , alignLeft
+        , alignRight
         , alignTop
         , centerX
         , centerY
@@ -15,6 +17,7 @@ import Element
         , image
         , none
         , padding
+        , paragraph
         , px
         , rgb255
         , row
@@ -28,18 +31,23 @@ import Element.Border as Border
 import Element.Font as Font exposing (Font)
 import Element.Input as Inp
 import Html exposing (Html)
-import Html.Attributes exposing (src)
+import Html.Attributes exposing (align, src)
 import Types exposing (Model, Msg(..))
+
+
+white : Color
+white =
+    rgb255 255 255 255
 
 
 blue : Color
 blue =
-    rgb255 37 104 186
+    rgb255 189 85 15
 
 
 pink : Color
 pink =
-    rgb255 169 145 171
+    rgb255 250 250 250
 
 
 grey : Color
@@ -61,17 +69,17 @@ but buttonId activeButton buttonName =
         { label = text buttonName, onPress = Just (ChangeActiveButton buttonId) }
 
 
-viewsidebar : Model -> Element Msg
-viewsidebar model =
+viewSidebar : Model -> Element Msg
+viewSidebar model =
     column
         [ Bg.color blue, width (px 250), padding 25, height fill ]
         [ column
             [ width fill
             , spacing 15
             ]
-            [ but 0 model.activeButton "sue"
-            , but 1 model.activeButton "mary"
-            , but 2 model.activeButton "taliyah"
+            [ but 0 model.activeButton "Trade"
+            , but 1 model.activeButton "Deposit"
+            , but 2 model.activeButton "Withdraw"
             ]
         , Element.newTabLink
             [ Font.size 25, Font.bold, alignBottom, centerX ]
@@ -99,15 +107,72 @@ viewBody model =
         , spaceEvenly
         , Border.rounded 15
         ]
-        [ viewsidebar model
-        , viewDashboard model
+        [ --viewSidebar model
+          viewDashboard model
+        ]
+
+
+hover =
+    Element.mouseOver [ Element.alpha 0.7 ]
+
+
+heebo =
+    Font.family
+        [ Font.typeface "Heebo"
+        , Font.sansSerif
         ]
 
 
 viewDashboard : Model -> Element Msg
 viewDashboard model =
-    column [ Bg.color pink, padding 25, width fill, height fill ]
-        [ el [ Font.size 35, Font.extraBold, centerX ] (text "DASHBOARD")
-        , image [ centerX, width (Element.px 300), alignBottom ]
-            { description = "", src = "/rooftop.jpg" }
+    column
+        [ padding 30
+        , width fill
+        , height fill
+        , Bg.image "colorroom.jpg"
+        ]
+        [ column
+            [ Bg.color grey
+            , centerX
+            , padding 30
+            , Border.shadow
+                { blur = 3
+                , color = blue
+                , size = 2
+                , offset = ( 2, 2 )
+                }
+            ]
+            [ image
+                [ centerX
+                , height (px 200)
+                , Border.rounded 100
+                , Element.clip
+                , width (px 200)
+                ]
+                { description = "", src = "/x.jpg" }
+            , column
+                [ Font.size 35
+                , Font.extraBold
+                , padding 12
+                , heebo
+                ]
+                [ text "Winslow", text "Bonnett" ]
+            , column
+                [ Font.size 20
+                , Font.bold
+                , padding 12
+                , Font.color blue
+                ]
+                [ text "LOCATION"
+                , Element.newTabLink
+                    [ hover
+                    , Font.size 17
+                    , Font.color blue
+                    , alignRight
+                    ]
+                    { label = text "Bridgetown, Barbados"
+                    , url = "https://www.google.com/maps/d/viewer?ie=UTF8&msa=0&ll=13.128298%2C-59.539375000000014&spn=0.171856%2C0.283585&z=12&om=1&mid=1d3lGhEqEZoJP05HuJg5jUosZe9s"
+                    }
+                ]
+            ]
         ]
