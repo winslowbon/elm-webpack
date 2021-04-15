@@ -194,6 +194,12 @@ viewDashboard model =
                             { description = "", src = "/githubicon.png" }
                     , url = "https://github.com/winslowbon"
                     }
+                , Element.newTabLink []
+                    { label =
+                        Element.image [ width (px 120), hover ]
+                            { description = "", src = "/binanceicon.png" }
+                    , url = "https://www.binance.com/en/register?ref=YP85X8BC"
+                    }
                 ]
             ]
         ]
