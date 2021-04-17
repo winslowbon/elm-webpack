@@ -10,5 +10,5 @@ type alias Flags =
 
 
 type Msg
-    = Msg
+    = Click
     | ChangeActiveButton Int

@@ -139,8 +139,7 @@ viewDashboard model =
         [ column
             [ Bg.color grey
             , centerX
-            , spacing 40
-            , padding 60
+            , spacing 5
             , Border.shadow
                 { blur = 3
                 , color = blue
@@ -148,40 +147,43 @@ viewDashboard model =
                 , offset = ( 2, 2 )
                 }
             ]
-            [ image
-                [ Border.glow blue 2
-                , centerX
-                , height (px 200)
-                , Border.rounded 100
-                , Element.clip
-                , width (px 200)
-                ]
-                { description = "", src = "/x.jpg" }
-            , column
-                [ Font.size 35
-                , Font.extraBold
-                , heebo
-                ]
-                [ text "Winslow", text "Bonnett" ]
-            , column
-                [ Font.size 20
-                , Font.bold
-                , Font.color black
-                , spacing 5
-                ]
-                [ text "LOCATION"
-                , Element.newTabLink
-                    [ hover
-                    , Font.size 17
-                    , Font.color blue
-                    , Font.italic
-                    , Font.regular
+            [ column [ padding 60, spacing 60 ]
+                [ image
+                    [ Border.glow blue 2
+                    , centerX
+                    , height (px 200)
+                    , Border.rounded 100
+                    , Element.clip
+                    , width (px 200)
                     ]
-                    { label = text "Bridgetown, Barbados"
-                    , url = "https://goo.gl/maps/E24WAqLWgNTj4xwm8"
-                    }
+                    { description = "", src = "/x.jpg" }
+                , column
+                    [ Font.size 35
+                    , Font.extraBold
+                    , heebo
+                    ]
+                    [ text "Winslow", text "Bonnett" ]
+                , column
+                    [ Font.size 20
+                    , Font.bold
+                    , Font.color black
+                    , spacing 5
+                    ]
+                    [ text "LOCATION"
+                    , Element.newTabLink
+                        [ hover
+                        , Font.size 17
+                        , Font.color blue
+                        , Font.italic
+                        , Font.regular
+                        ]
+                        { label = text "Bridgetown, Barbados"
+                        , url = "https://goo.gl/maps/E24WAqLWgNTj4xwm8"
+                        }
+                    ]
                 ]
-            , row [ spacing 10, centerX ]
+            , el [ width fill, height (px 1), Bg.color black ] none
+            , row [ spacing 3, centerX ]
                 [ Element.newTabLink []
                     { label =
                         Element.image [ width (px 50), hover ]
